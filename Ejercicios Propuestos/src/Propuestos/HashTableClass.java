@@ -1,16 +1,36 @@
 package Propuestos;
 
-public class HashTableClass implements HashTable{
+import java.util.ArrayList;
+
+public class HashTableClass  implements HashTable{
+	
+	Node [] arrayHash;
+	int sizeTable;
+	int spaceCompleted=0;
+	
+	
+	public HashTableClass(int sizeTable) {
+		this.sizeTable=sizeTable;
+		arrayHash = new Node[sizeTable];
+		for (int i = 0; i < sizeTable; i++) {
+			arrayHash[i]=new Node();
+			
+		}
+	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		if (spaceCompleted==0) {
+			return 0;
+		}
+		return spaceCompleted;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if (this.sizeTable==0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -28,13 +48,28 @@ public class HashTableClass implements HashTable{
 
 	@Override
 	public Integer get(String key) {
-		// TODO Auto-generated method stub
-		return null;
+		Integer value=null;
+		int hashIndex= key.hashCode()&sizeTable;
+		Node ArrayValue= arrayHash[hashIndex];
+		while(ArrayValue!=null) {
+			if(ArrayValue.getKey()==key) {
+				value= (Integer) ArrayValue.getValue();
+				break;
+			}
+			ArrayValue=ArrayValue.next;
+		}
+		
+		return value;
 	}
 
 	@Override
 	public Integer put(String key, Integer value) {
-		// TODO Auto-generated method stub
+		int hashIndex= key.hashCode()&sizeTable;
+		Node ArrayValue= arrayHash[hashIndex];
+		Node newItem= new Node(key, value);
+		newItem.next=ArrayValue.next;
+		ArrayValue.next=newItem;
+		spaceCompleted++;
 		return null;
 	}
 
@@ -46,18 +81,23 @@ public class HashTableClass implements HashTable{
 
 	@Override
 	public void clear() {
-
-		// TODO Auto-generated method stub
-		
+		for (int i = 0; i < arrayHash.length; i++) {
+			arrayHash[i].next=null;
+			
+		}
+		spaceCompleted=0;
 	}
 	
+	@Override
     public int hashCode() {
-		return 0;
+		final int prime = this.sizeTable;
+		
+		int resultado= 0;
+		return resultado;
 	}
     
 
     public String toString() {
 		return null;
 	}
-
 }
