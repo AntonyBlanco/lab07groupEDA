@@ -19,6 +19,5 @@ public class Test2 {
 		System.out.println(tabla.get("uno"));
 		System.out.println(tabla.get("dos"));
 		System.out.println("Numero de elementos despues de quitar todos los elementos de la tabla:  " +tabla.size());
->>>>>>> echecalla
 	}
 }
