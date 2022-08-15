@@ -83,9 +83,9 @@ public class HashTableClass  implements HashTable{
 	public void clear() {
 		for (int i = 0; i < arrayHash.length; i++) {
 			arrayHash[i].next=null;
-			spaceCompleted--;
+			
 		}
-		
+		spaceCompleted=0;
 	}
 	
 	@Override
@@ -100,10 +100,4 @@ public class HashTableClass  implements HashTable{
     public String toString() {
 		return null;
 	}
-    
-//    public int GetHash(int key) {
-//    	return key%sizeTable;
-//    }
- 
-    
 }
